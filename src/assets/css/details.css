@@ -1,0 +1,119 @@
+@import "colors.css";
+
+.pokemon-details {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 12px;
+
+  & > * {
+    padding: 15px;
+    border-radius: 15px;
+    background-color: #3338;
+  }
+
+  .content-image {
+    padding: 30px;
+
+    img {
+      width: 100%;
+      filter: drop-shadow(0px 0px 50px var(--color-type));
+      aspect-ratio: 1/1;
+    }
+  }
+
+  .characteristics {
+    display: grid;
+    gap: 0.8rem 0.5rem;
+
+    grid-template-columns: 1fr 1fr;
+
+    li {
+      display: grid;
+      grid-column: span 2;
+      grid-template-columns: subgrid;
+      border-collapse: collapse;
+
+      & > * {
+        font-size: 0.85rem;
+        font-weight: normal;
+      }
+
+      strong {
+        text-align: end;
+      }
+
+      span {
+        text-align: start;
+        text-transform: capitalize;
+      }
+    }
+  }
+
+  .slats {
+    li {
+      margin-bottom: 10px;
+
+      label {
+        display: block;
+      }
+
+      progress {
+        width: 100%;
+        height: 25px;
+        accent-color: var(--color-type);
+      }
+    }
+  }
+}
+
+.key {
+  font-weight: 400;
+  text-transform: uppercase;
+
+  &::after {
+    content: ":";
+  }
+}
+
+@media (width >= 600px) {
+  #image {
+    grid-area: image;
+  }
+
+  #characteristics {
+    grid-area: characteristics;
+  }
+
+  #slats {
+    grid-area: slats;
+  }
+
+  #name {
+    grid-area: name;
+  }
+
+  .pokemon-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "name characteristics"
+      "image characteristics"
+      "image slats";
+
+    & > * {
+      align-self: self-start;
+    }
+  }
+}
+
+@media (width >= 1024px) {
+  .pokemon-details {
+    margin-inline: auto;
+    max-width: 1200px;
+    grid-template-columns: 60% 40%;
+    grid-template-areas:
+      "image name"
+      "image characteristics"
+      "image slats";
+  }
+}
